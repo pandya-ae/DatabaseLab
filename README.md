@@ -1,2 +1,2 @@
 # DatabaseLab
- Database Lab Course
+ Database Lab course
