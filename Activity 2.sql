@@ -1,0 +1,53 @@
+CREATE DATABASE ACADEMIC;
+ 
+CREATE TABLE student(
+ NIM VARCHAR(255) NOT NULL AUTO_INCREMENT,
+ student_name VARCHAR(255) NOT NULL,
+ gender ENUM('male', 'female') NOT NUL
+ birth_place VARCHAR(255) NOT NULL, 
+ birth_date DATE, 
+ address VARCHAR(255) NOT NULL, 
+ phone VARCHAR(225) NOT NULL,
+ PRIMARY KEY(NIM)
+);
+ 
+CREATE TABLE lecturer(
+ NIP VARCHAR(255) NOT NULL AUTO_INCREMENT,
+ lecture_name VARCHAR(255) NOT NULL,
+ gender BOOLEAN, 
+ laboratory VARCHAR(255) NOT NULL, 
+ interest VARCHAR(255) NOT NULL, 
+ address VARCHAR(255) NOT NULL, 
+ phone VARCHAR(15) NOT NULL,
+ PRIMARY KEY(NIP)
+);
+ 
+CREATE TABLE subject(
+ course_code VARCHAR(255) NOT NULL AUTO_INCREMENT,
+ course_name VARCHAR(255) NOT NULL,
+ NIP VARCHAR(255) NOT NULL, 
+ credits INT,
+ day VARCHAR(255), 
+ hour DECIMAL(2,1), 
+ classroom VARCHAR(255),
+ description VARCHAR (255)
+ PRIMARY KEY(course_code),
+ FOREIGN KEY(NIP) REFERENCES lecturer(NIP)
+);
+ 
+CREATE TABLE KRS(
+ krs_id VARCHAR(255) NOT NULL AUTO_INCREMENT,
+ course_code VARCHAR(255) NOT NULL,
+ NIM VARCHAR(255) NOT NULL, 
+ year INT, 
+ semester INT,
+ PRIMARY KEY(krs_id),
+ FOREIGN KEY(course_code) REFERENCES subject(course_code)
+);
+ 
+DESCRIBE lecturer;
+ALTER TABLE lecturer
+DROP COLUMN NIP;
+ALTER TABLE lectuer
+ADD COLUMN NIP
+AFTER lecture_name;
